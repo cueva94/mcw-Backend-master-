@@ -1,5 +1,5 @@
 import { Table, Column, Model } from "sequelize-typescript";
-import {STRING} from "sequelize"
+import {STRING,} from "sequelize"
 
 @Table({
     freezeTableName: true,
@@ -22,15 +22,15 @@ export class UserPojo extends Model{
 
     @Column({
         type: STRING,
-        field: 'username'
-    })
-    username: string
-
-    @Column({
-        type: STRING,
         field: 'fullname'
     })
     fullname: string
+
+    @Column({
+        type: STRING,
+        field: 'phone'
+    })
+    phone: string
 
     @Column({
         type: STRING,
@@ -46,9 +46,9 @@ export class UserPojo extends Model{
 
     @Column({
         type: STRING,
-        field: 'birthdate'
+        field: 'dob'
     })
-    birthdate: string
+    dob: string
 
     @Column({
         type: STRING,

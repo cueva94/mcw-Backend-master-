@@ -28,6 +28,7 @@ export const userControllers = {
             res.json(result)
           }else{
             res.sendStatus(404)
+            console.log('usuario logueado')
           }
       
         })

@@ -50,11 +50,11 @@ async Userlogin (userData: {email: string, password: string}) : Promise <userDto
 
 parsePojoIntoDto(userPojo: UserPojo): userDto{
     const userDTO : userDto = {
-        username: userPojo.username,
         fullname: userPojo.fullname,
+        phone: userPojo.phone,
         email: userPojo.email,
         password: userPojo.password,
-        birthdate: userPojo.birthdate,
+        dob: userPojo.dob,
         deposit: userPojo.deposit
     }
     return userDTO

@@ -16,3 +16,6 @@ CryptoUserBuy: Cryptomonedas compradas por usuario (POST)
 Modelo relacional BBDD
 
 ![ddbb](https://user-images.githubusercontent.com/119944145/231569840-01ad8a95-bb38-451d-9043-bc6418afb82d.png)
+
+Postman
+[MyCryptoWallet.txt](https://github.com/cueva94/mcw-Backend-master-/files/11215361/MyCryptoWallet.txt)

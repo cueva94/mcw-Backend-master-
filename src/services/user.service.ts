@@ -2,6 +2,7 @@ import { UserPojo } from "../data/models/user.model"
 import { UserRepository } from "../data/repositories/user.repository"
 import { newUserDto, userDto } from "../types"
 import { v4 as uuid } from 'uuid';
+import Logger from "../utils/utils";
 
 export class UserServices{
 
@@ -22,7 +23,7 @@ export class UserServices{
     .then(user_id => {
         return user_id
     }).catch(error => {
-        console.error(error)
+           Logger.error(error, "Error en el servicio addUser")
         throw error
     })
     return userPromise
@@ -34,12 +35,11 @@ async Userlogin (userData: {email: string, password: string}) : Promise <userDto
     .then( resUser => {
 
         if(!!resUser){
-            console.log('servicio')
             return this.parsePojoIntoDto(resUser)
         }
         return undefined
     }).catch(error => {
-        console.error(error)
+        Logger.error(error, "Error en el servicio UserLogin")
         return error
     })
     return userPromise

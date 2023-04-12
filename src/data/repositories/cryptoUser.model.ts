@@ -1,6 +1,6 @@
 import { CryptoUserPojo } from "../models/cryptoUser.model";
 import { cryptUser_connect } from "../config/cryptoUser.db.config";
-
+import Logger from "../../utils/utils";
 export class CryptoUserRepository {
   _db: any = {};
   _cryptoUserRepository: any;
@@ -10,8 +10,6 @@ export class CryptoUserRepository {
     this._cryptoUserRepository =
       this._db.sequelize.getRepository(CryptoUserPojo);
   }
-
-  // Obtener cryptos por usuario
 
   async cryptoUsers(user_id: string): Promise<CryptoUserPojo[]> {
     try {
@@ -24,12 +22,11 @@ export class CryptoUserRepository {
         return [];
       }
     } catch (error) {
-      console.error(error);
+      Logger.error(error, "Error en el repositorio cryptoUsers");
       throw error;
     }
   }
 
-  // crear crypto por usuario 
 
 async cryptoBuy( newCryptoBuy : CryptoUserPojo): Promise<string>{
 
@@ -38,7 +35,7 @@ async cryptoBuy( newCryptoBuy : CryptoUserPojo): Promise<string>{
     return CryptoBuy.crypto_id
     
   } catch (error) {
-    console.error(error)
+    Logger.error(error,"Error en el repositorio CryptoBuy")
     throw error
   }
 }

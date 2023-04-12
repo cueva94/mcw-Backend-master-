@@ -1,5 +1,7 @@
+
 import { UserServices } from "../services/user.service"
 import { newUserDto } from "../types"
+import Logger from "../utils/utils";
 
 
 
@@ -12,9 +14,10 @@ export const userControllers = {
       const newUser: newUserDto = req.body;
       userServices.addUser(newUser).then((result) => {
         res.json(result);
+        Logger.info("usuario creado")
       });
     } catch (error) {
-      console.error(error);
+      Logger.error("Usuario no creado");
       res.sendEstatus(500);
     }
   },
@@ -23,17 +26,17 @@ export const userControllers = {
       try {
         const userData = req.body
         userServices.Userlogin(userData).then( result =>{
-
           if(!!result){
             res.json(result)
+            Logger.info('usuario logueado')
           }else{
             res.sendStatus(404)
-            console.log('usuario logueado')
+            Logger.warn("Usuario no encontrado")
           }
       
         })
       } catch (error) {
-        console.error(error);
+        Logger.error("Error User Login");
       res.sendStatus(500);
       }
     }

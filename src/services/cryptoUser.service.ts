@@ -1,7 +1,7 @@
 import { CryptoUserPojo } from "../data/models/cryptoUser.model"
 import { CryptoUserRepository } from "../data/repositories/cryptoUser.model"
 import {cryptoUserDto} from "../types"
-
+import Logger from "../utils/utils"
 export class CryptoUserServices{
 
     _cryptoUserRepository: CryptoUserRepository
@@ -20,7 +20,7 @@ export class CryptoUserServices{
         return res
 
     }).catch(error =>{
-        console.error(error)
+        Logger.error(error,"Error en el servicio CrytoUser")
         throw error
     })
     return cryptoUserPomise 
@@ -33,7 +33,7 @@ export class CryptoUserServices{
      .then(res => {
          return res
      }).catch(error => {
-         console.error(error)
+         Logger.error(error,"Error en el servicio CryptoBuy")
          throw error
      })
      return cryptoBuyPromise

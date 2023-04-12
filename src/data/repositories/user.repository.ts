@@ -1,7 +1,6 @@
 import { UserPojo } from "../models/user.model"
 import {user_connect} from "../config/user.db.config"
-
-
+import Logger from "../../utils/utils";
 export class UserRepository {
   _db: any = {};
   _userRepository: any;
@@ -23,7 +22,8 @@ export class UserRepository {
       newUser = await this._userRepository.create(newUser);
       return newUser.user_id;
     } catch (error) {
-      console.error(error);
+
+      Logger.error(error, "Problemas repositorio addUser");
       throw error;
     }
   }
@@ -33,8 +33,8 @@ export class UserRepository {
     password: string;
   }): Promise<UserPojo | undefined> {
     try {
-      console.log("en el repositorio");
-      console.log(userData);
+      Logger.warn("en el repositorio");
+      Logger.warn(userData);
       const user = await this._userRepository.findOne({
         where: { email: userData.email, password: userData.password },
       });
@@ -45,7 +45,7 @@ export class UserRepository {
         return undefined;
       }
     } catch (error) {
-      console.error(error);
+      Logger.error(error, "Error en repositori login");
       return error;
     }
   }

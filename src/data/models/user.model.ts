@@ -1,5 +1,5 @@
 import { Table, Column, Model } from "sequelize-typescript";
-import {STRING,} from "sequelize"
+import {STRING} from "sequelize"
 
 @Table({
     freezeTableName: true,

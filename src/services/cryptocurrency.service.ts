@@ -1,22 +1,21 @@
 import { CryptoPojo } from "../data/models/cryptocurrency.model"
 import { CryptoRepository } from "../data/repositories/cryptocurrency.model"
 import { cryptoDto, newCryptoDto } from "../types"
-
+import Logger from "../utils/utils"
 export class CryptoServices{
     
     _cryptoRepository: CryptoRepository
     constructor(){
         this._cryptoRepository = new CryptoRepository()
     }
-   
-    //TODO: Crear Cryptocurrency
+
     async addCrypto( crypto : newCryptoDto) : Promise <string> {
        let cryptoPojo : CryptoPojo = crypto as CryptoPojo 
         const cryptoPromise = this._cryptoRepository.addCrypto(cryptoPojo)
         .then(crypto_id => {
             return crypto_id
         }).catch(error => {
-            console.error(error)
+            Logger.error(error,"Error en el servicio addCrypto")
             throw error
         })
         return cryptoPromise
@@ -32,7 +31,7 @@ export class CryptoServices{
             })
             return cryptosAsDto
         }).catch(error => {
-            console.error(error)
+            Logger.error(error, "Error en el servicio getCryptos")
             throw error
         })
         return cryptoPromise

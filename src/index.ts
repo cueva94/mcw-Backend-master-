@@ -2,6 +2,7 @@ import express from 'express'
 import UserRouter from './routes/user.routes'
 import CryptoRouter from './routes/cryptocurrency.routes'
 import CryptoUserrouter from './routes/criptoUser.routes'
+import Logger from './utils/utils'
 
 const app = express()
 const PORT = 3000
@@ -18,5 +19,5 @@ app.use('/api/crypto', CryptoRouter)
 app.use('/api/cryptoUser',CryptoUserrouter)
 
 app.listen(PORT, () => {
-    console.log(`servidor escuchando en el puerto ${PORT}`)
+    Logger.info(`servidor escuchando en el puerto ${PORT}`)
 })

@@ -1,5 +1,8 @@
 import {CryptoUserServices} from "../services/cryptoUser.service"
 import {cryptoUserDto} from "../types"
+import Logger from "../utils/utils";
+
+
 const cryptouserServices : CryptoUserServices = new CryptoUserServices ()
 
 export const cryptoUserController = {
@@ -10,10 +13,11 @@ export const cryptoUserController = {
            cryptouserServices.cryptoUsers(user_id)
             .then(result => {
                 res.json(result)
+                Logger.warn(result)
             })
             
         } catch (error) {
-            console.error(error)
+            Logger.error(error)
             res.sendEstatus(500)
         } 
     },
@@ -26,10 +30,10 @@ export const cryptoUserController = {
                 res.json(result)
             })
             .catch(err => {
-                console.log(err)
+                Logger.log(err)
             })
         } catch (error) {
-            console.error(error)
+            Logger.error(error)
             res.sendEstatus(500)
         }
     }

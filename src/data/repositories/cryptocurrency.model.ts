@@ -1,7 +1,7 @@
 import { CryptoPojo } from "../models/cryptocurrency.model"
 import {v4 as uuid} from 'uuid'
 import { crypt_connect } from "../config/cryptocurrency.db.config"
-
+import Logger from "../../utils/utils"
 export class CryptoRepository{
 
     _db: any = {}
@@ -10,7 +10,7 @@ export class CryptoRepository{
         this._db = crypt_connect()
         this._cryptoRepository = this._db.sequelize.getRepository(CryptoPojo)
     }
-    //crear cryptocurrency
+
     async addCrypto ( newCrypto : CryptoPojo) : Promise <string> {
         try {
             newCrypto.crypto_id = uuid()
@@ -18,17 +18,16 @@ export class CryptoRepository{
             return newCrypto.crypto_id
             
         } catch (error) {
-            console.error(error)
+            Logger.error(error, "Error en el repositorio addCrypto")
             throw error 
         }
     }
     
-    // obtener lista de cryptos creadas 
     async getCrypto() : Promise <CryptoPojo[]>{
         try {
             return await this._cryptoRepository.findAll()
         } catch (error) {
-            console.error(error)
+            Logger.error(error, "Error en el repositorio getCrypto")
             throw error
         }
     }

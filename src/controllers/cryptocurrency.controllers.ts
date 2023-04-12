@@ -1,5 +1,6 @@
 import { CryptoServices } from "../services/cryptocurrency.service"
 import { newCryptoDto } from "../types"
+import Logger from "../utils/utils";
 
 const cryptoServices : CryptoServices = new CryptoServices()
 
@@ -13,10 +14,10 @@ export const cryptoController = {
                 res.json(result)
             })
             .catch(err => {
-                console.log(err)
+                Logger.log(err)
             })
         } catch (error) {
-            console.error(error)
+            Logger.error(error)
             res.sendEstatus(500)
         }
     },
@@ -25,7 +26,7 @@ export const cryptoController = {
         cryptoServices.getCryptos().then(result =>{
             res.json(result)
           }).catch(error => {
-            console.error(error)
+            Logger.error("Error Obtener crypto")
             res.sendEstatus(500)
           })
     }
